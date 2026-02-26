@@ -23,6 +23,9 @@
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
+  /* Hide system cursor absolutely everywhere */
+  *, *::before, *::after { cursor: none !important; }
+
   html { scroll-behavior: smooth; }
 
   body {
@@ -30,30 +33,34 @@
     color: var(--text);
     font-family: 'JetBrains Mono', monospace;
     overflow-x: hidden;
-    cursor: none;
+    cursor: none !important;
   }
 
   /* Custom cursor */
   .cursor {
     position: fixed;
+    left: -100px; top: -100px;
     width: 12px; height: 12px;
     background: var(--green);
     border-radius: 50%;
     pointer-events: none;
-    z-index: 9999;
+    z-index: 99999;
     transform: translate(-50%, -50%);
     transition: transform 0.1s ease;
-    box-shadow: 0 0 12px var(--green);
+    box-shadow: 0 0 12px var(--green), 0 0 24px var(--green-dim);
+    will-change: left, top;
   }
   .cursor-ring {
     position: fixed;
+    left: -100px; top: -100px;
     width: 32px; height: 32px;
     border: 1px solid var(--green-dim);
     border-radius: 50%;
     pointer-events: none;
-    z-index: 9998;
+    z-index: 99998;
     transform: translate(-50%, -50%);
-    transition: transform 0.15s ease, width 0.2s, height 0.2s;
+    transition: left 0.08s ease, top 0.08s ease, width 0.2s, height 0.2s;
+    will-change: left, top;
   }
 
   /* Scanlines overlay */
@@ -633,8 +640,8 @@
     transition: color 0.2s, border-color 0.2s;
     letter-spacing: 0.5px;
   }
-  .proj-link:hover { color: var(--green); border-color: var(--green-dim); }
-  .proj-link.live { color: var(--green); border-color: var(--green-dim); }
+  .proj-link:hover { color: var(--green); border-color: var(--green); }
+  .proj-link.live { color: var(--green); border-color: var(--green); background: rgba(0,255,136,0.05); }
   .proj-cat-label {
     font-size: 18px;
     letter-spacing: 2px;
@@ -1024,12 +1031,12 @@
       <div class="proj-num">01 / ML</div>
       <div class="proj-title">Energy Demand Forecasting</div>
       <div class="proj-desc">Built and tuned a Random Forest model for residential energy forecasting using feature engineering, imputation, and variance-based filtering. Performed +5°C scenario analysis to simulate distribution drift.</div>
-      <div class="proj-result">▸ ~1.5% lower MSE vs baseline · 14.5% demand rise predicted</div>
+      <div class="proj-result" style="color:var(--blue);border-color:#4fc3f733;">▸ ~1.5% lower MSE vs baseline · 14.5% demand rise predicted</div>
       <div class="proj-stack">
         <span class="stack-tag">Python</span><span class="stack-tag">scikit-learn</span><span class="stack-tag">Random Forest</span><span class="stack-tag">Pandas</span>
       </div>
       <div class="proj-links">
-        <a href="https://github.com/RoshniRMore/Energy_Demand_Forecasting" target="_blank" class="proj-link">⌥ GitHub</a>
+        <a href="https://github.com/RoshniRMore/Energy_Demand_Forecasting" target="_blank" class="proj-link live">⌥ GitHub</a>
       </div>
     </div>
 
@@ -1037,12 +1044,12 @@
       <div class="proj-num">02 / NLP</div>
       <div class="proj-title">Review Clustering & Sentiment with LLMs</div>
       <div class="proj-desc">End-to-end NLP pipeline analyzing 153K+ Amazon reviews and 12K+ Twitter posts using BERT embeddings, clustering, and LLM-based summarization for aspect-level sentiment analysis.</div>
-      <div class="proj-result">▸ 153K+ reviews · BERT + LLM pipeline · Actionable product insights</div>
+      <div class="proj-result" style="color:var(--blue);border-color:#4fc3f733;">▸ 153K+ reviews · BERT + LLM pipeline · Actionable product insights</div>
       <div class="proj-stack">
         <span class="stack-tag">BERT</span><span class="stack-tag">LLMs</span><span class="stack-tag">NLTK</span><span class="stack-tag">Python</span><span class="stack-tag">Clustering</span>
       </div>
       <div class="proj-links">
-        <a href="https://github.com/RoshniRMore/Review-Clustering-and-Sentiment-Insights-Using-LLMs" target="_blank" class="proj-link">⌥ GitHub</a>
+        <a href="https://github.com/RoshniRMore/Review-Clustering-and-Sentiment-Insights-Using-LLMs" target="_blank" class="proj-link live">⌥ GitHub</a>
       </div>
     </div>
 
@@ -1050,12 +1057,12 @@
       <div class="proj-num">03 / Health AI</div>
       <div class="proj-title">WristSense — Predictive Health from Wearables</div>
       <div class="proj-desc">Unified intelligent system that aggregates and analyzes wearable data (heart rate, blood oxygen, sleep, stress) to enable proactive health monitoring. Real-time anomaly detection with alerts routed to guardians and medical professionals.</div>
-      <div class="proj-result">▸ Real-time alerts · Encrypted audit trails · Multi-stakeholder dashboard</div>
+      <div class="proj-result" style="color:var(--blue);border-color:#4fc3f733;">▸ Real-time alerts · Encrypted audit trails · Multi-stakeholder dashboard</div>
       <div class="proj-stack">
         <span class="stack-tag">Python</span><span class="stack-tag">ML</span><span class="stack-tag">IoT</span><span class="stack-tag">Health Analytics</span><span class="stack-tag">Real-time</span>
       </div>
       <div class="proj-links">
-        <a href="https://github.com/RoshniRMore/Wrist_Sense" target="_blank" class="proj-link">⌥ GitHub</a>
+        <a href="https://github.com/RoshniRMore/Wrist_Sense" target="_blank" class="proj-link live">⌥ GitHub</a>
       </div>
     </div>
 
@@ -1193,7 +1200,7 @@
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
           <div>
             <label style="font-size:9px;color:var(--green);letter-spacing:2px;text-transform:uppercase;display:block;margin-bottom:5px;">Name *</label>
-            <input type="text" name="name" placeholder="Roshni More" required
+            <input type="text" name="name" placeholder="Your Name" required
               style="width:100%;background:var(--bg2);border:1px solid var(--border);color:var(--text);font-family:'JetBrains Mono',monospace;font-size:11px;padding:10px 14px;outline:none;transition:border-color 0.2s;"
               onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border)'" />
           </div>
@@ -1233,8 +1240,8 @@
         <div>
           <div style="font-size:9px;color:var(--green);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;">Direct Contact</div>
           <div style="display:flex;flex-direction:column;gap:10px;">
-            <a href="/cdn-cgi/l/email-protection#b1c3dedcdec3d4f1c2c8c39fd4d5c4" class="contact-link" style="justify-content:flex-start;">
-              <span class="icon">✉</span> <span class="__cf_email__" data-cfemail="5624393b39243316252f2478333223">[email&#160;protected]</span>
+            <a href="mailto:romore@syr.edu" class="contact-link" style="justify-content:flex-start;">
+              <span class="icon">✉</span> romore@syr.edu
             </a>
             <a href="tel:+13152096002" class="contact-link" style="justify-content:flex-start;">
               <span class="icon">☏</span> +1 (315)-209-6002
@@ -1278,22 +1285,45 @@
   <span style="color:var(--green)">roshni@portfolio</span> · Built with data, caffeine & terminal aesthetics · 2025
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // Custom cursor
+<script>
+  // Custom cursor — robust implementation
   const cursor = document.getElementById('cursor');
   const cursorRing = document.getElementById('cursorRing');
+
+  let mouseX = -100, mouseY = -100;
+  let ringX = -100, ringY = -100;
+
   document.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-    setTimeout(() => {
-      cursorRing.style.left = e.clientX + 'px';
-      cursorRing.style.top = e.clientY + 'px';
-    }, 80);
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursor.style.left = mouseX + 'px';
+    cursor.style.top  = mouseY + 'px';
   });
-  document.querySelectorAll('a, button').forEach(el => {
+
+  // Smooth trailing ring with rAF
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.18;
+    ringY += (mouseY - ringY) * 0.18;
+    cursorRing.style.left = ringX + 'px';
+    cursorRing.style.top  = ringY + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  // Scale up on interactive elements
+  document.querySelectorAll('a, button, input, textarea, select, [role="button"]').forEach(el => {
     el.addEventListener('mouseenter', () => {
-      cursor.style.transform = 'translate(-50%,-50%) scale(1.5)';
-      cursorRing.style.width = '48px';
-      cursorRing.style.height = '48px';
+      cursor.style.transform = 'translate(-50%,-50%) scale(2)';
+      cursorRing.style.width  = '52px';
+      cursorRing.style.height = '52px';
+      cursorRing.style.borderColor = 'var(--green)';
     });
     el.addEventListener('mouseleave', () => {
+      cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+      cursorRing.style.width  = '32px';
+      cursorRing.style.height = '32px';
+      cursorRing.style.borderColor = 'var(--green-dim)';
+    });
+  });
+</script>
+</html>
