@@ -193,6 +193,9 @@
   .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
 
   .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     padding: 11px 28px;
     background: var(--green);
     color: #000;
@@ -211,6 +214,9 @@
     transform: translateY(-2px);
   }
   .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     padding: 11px 28px;
     background: transparent;
     color: var(--green);
@@ -661,14 +667,117 @@
     transition: opacity 0.6s ease, transform 0.6s ease;
   }
 
-  @media (max-width: 768px) {
-    .hero { flex-direction: column; padding: 100px 20px 40px; }
-    .hero-right { margin-left: 0; margin-top: 40px; width: 100%; } .terminal-widget { width: 100% !important; margin-left: 0; margin-top: 0; } .photo-wrapper { width: 160px; height: 160px; } .photo-circle { width: 160px; height: 160px; }
-    .hero-metrics { gap: 20px; }
+  @media (max-width: 900px) {
     nav { padding: 12px 20px; }
     nav ul { display: none; }
-    section { padding: 60px 20px; }
-    .contact-section { padding: 40px 20px; }
+    .hero {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 96px 20px 44px;
+      width: 100%;
+    }
+    .hero-content { width: 100%; }
+    .hero-right {
+      margin-left: 0;
+      margin-top: 36px;
+      width: 100%;
+      align-items: stretch;
+    }
+    .terminal-widget {
+      width: 100% !important;
+      max-width: 100%;
+      margin-left: 0 !important;
+      margin-top: 0 !important;
+      overflow-x: auto;
+    }
+    section,
+    section > div,
+    .contact-section,
+    .contact-section > div {
+      width: 100% !important;
+      max-width: 100% !important;
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+    }
+    section div[style*="grid-template-columns"],
+    .contact-section div[style*="grid-template-columns"] {
+      grid-template-columns: 1fr !important;
+    }
+    .photo-wrapper,
+    .photo-circle {
+      width: 160px;
+      height: 160px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    body { overflow-x: hidden; }
+    nav { padding: 10px 16px; }
+    .nav-logo { font-size: 13px; }
+    .nav-status { font-size: 12px; }
+    .hero {
+      min-height: auto;
+      padding: 88px 16px 36px;
+    }
+    .hero-eyebrow {
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+    .hero-name { font-size: 40px; }
+    .hero-title { font-size: 16px; }
+    .hero-desc {
+      font-size: 15px;
+      line-height: 1.7;
+      max-width: 100%;
+    }
+    .hero-btns {
+      display: grid;
+      grid-template-columns: 1fr;
+      width: 100%;
+    }
+    .btn-primary,
+    .btn-secondary {
+      width: 100%;
+      min-height: 44px;
+      padding: 12px 18px;
+      text-align: center;
+    }
+    .hero-metrics {
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .metric-num { font-size: 28px; }
+    .metric-label { font-size: 13px; }
+    section {
+      padding-top: 52px !important;
+      padding-bottom: 52px !important;
+    }
+    .section-header {
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+    .section-tag,
+    .section-num {
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+    h2 { font-size: 28px; }
+    .proj-links,
+    .contact-links {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+    .proj-link,
+    .contact-link {
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+    }
+    input,
+    textarea,
+    button {
+      font-size: 16px !important;
+    }
   }
 </style>
 </head>
@@ -715,6 +824,7 @@
     <div class="hero-btns">
       <a href="#projects" class="btn-primary">View Projects</a>
       <a href="#contact" class="btn-secondary">Get in Touch</a>
+      <a href="assets/resume.pdf" class="btn-secondary" download>Download Resume</a>
     </div>
   </div>
 
